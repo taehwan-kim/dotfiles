@@ -1,0 +1,165 @@
+set MODULEPATH = $MODULEPATH':'$HOME/privatemodules
+setenv MODULEPATH $MODULEPATH
+setenv TERM "xterm-256color"
+
+# Setup Modulefiles
+
+#module load isg/eos24
+#module load isg/mpc_equalizer_synopsys
+#module load isg/mpc_equalizer
+module load isg/ephi_lidar
+
+source /tools/flexlm/flexlm.cshrc
+
+setenv SPECTRE_DEFAULTS -E
+setenv CDS_Netlisting_Mode "Analog"
+
+# Set the default editor to be vim
+setenv EDITOR vim
+
+# setup calibre
+setenv MGC_HOME /tools/mentor/calibre/ixl_cal_2013.2_18.13
+# setenv MGC_HOME /tools/mentor/calibre/ixl_cal_2011.3_29.20
+setenv MGC_AMS_HOME /tools/commercial/mentor/ams/12_2d
+
+# setup ads
+setenv HPEESOF_HOME /tools/commercial/EEsof/ADS/ADS2014_01 
+setenv HPEESOF_PATH $HPEESOF_HOME/bin
+
+# synopsys educational pdk
+#setenv IPDK_SYN_28NM /tools/scratch/taehwan/synopsys-32nm
+setenv IPDK_SYN_28NM /tools/designs/ee241/synopsys-32nm
+
+#setenv CNI_ROOT /tools/commercial/tstech/iPDK65/tsmc65_LP_1p9m_6X2Z0U_IPDK/PycellStudio/lnx_32
+#setenv CNI_PLAT_ROOT ${CNI_ROOT}/plat_linux_gcc411_32
+
+setenv LM_LICENSE_FILE 5280@bisc.eecs.berkeley.edu
+
+setenv OA_COMPILER gcc411
+#setenv CNI_DISPLAY_DIR ${IPDK_SYN_28NM}/SAED_PDK_32_28
+#setenv CNI_LOG_DEFAULT /dev/null
+
+#setenv PYTHONHOME ${CNI_PLAT_ROOT}/3rd
+#setenv PYTHONPATH ${CNI_ROOT}/pylib
+
+# setup and start icfb
+setenv CDS_INST_DIR /tools/cadence/IC/IC616
+setenv MMSIM_HOME /tools/cadence/MMSIM/MMSIM111
+#$setenv TSMC65_DK  /tools/commercial/tstech/iPDK65/tsmc65_GP_1p9m_6X2Z0U_IPDK/
+#/tools/commercial/tstech/packages/T-N65-CM-SP-007-A1/1d5a/6X2Z/11_25/
+setenv CDSHOME $CDS_INST_DIR
+#setenv ICCHOME /tools/synopsys/icc/current
+#setenv SILICONSMART /tools/synopsys/SiliconSmart/2013.06
+#setenv PTS_HOME /tools/synopsys/pt/D-2009.12-SP3
+#setenv MWHOME /tools/synopsys/mw/C-2009.06-SP1/bin/IA.32
+#setenv ASTROHOME /tools/synopsys/astro/Z-2007.03-SP4/bin/IA.32
+#setenv SXHOME  /tools/synopsys/sx/C-2009.03-SP1/C2009.03-SP1/sx_C2009_03-SP1
+#setenv MCDIR $SYNOPSYS/mc
+#setenv ASSURAHOME /tools/cadence/ASSURA/ASSURA317_lnx86
+setenv ASSURAHOME /tools/cadence/ASSURA/AASSURA_613_41_lnx86
+setenv CDS_AUTO_64BIT ALL
+setenv IUSHOME /tools/cadence/INCISIV/INCISIV122
+setenv AMSHOME      $IUSHOME
+#setenv IUSHOME /tools/cadence/IUS/IUS82_USR5_lnx
+setenv HSPICE_HOME  /tools/synopsys/hspice/current/hspice
+#setenv SYNOPSYS     /tools/synopsys/syn/C-2009.06-SP1
+setenv ISG_CAD_ROOT /tools/designs/ISG/isg_chips/cad
+setenv RCPATH /tools/cadence/EDI/EDI101/bin/
+# BDAsim setup
+setenv BDA_ROOT     /tools/commercial/bda/2013_Q2/bda_root
+setenv CDS_LOAD_ENV CSF
+
+# synopsys tools
+setenv SYNOPSYS_ROOT /tools/synopsys
+
+# synopsys installer
+setenv INSTALLER_PATH $SYNOPSYS_ROOT/installer
+
+# synopsys vcs
+setenv VCS_HOME $SYNOPSYS_ROOT/vcs/G-2012.09
+setenv VCS_PATH $VCS_HOME/bin
+
+# synopsys dc
+setenv DC_HOME $SYNOPSYS_ROOT/syn/current
+setenv DC_PATH $DC_HOME/bin
+
+#synopsys icc
+setenv ICC_HOME $SYNOPSYS_ROOT/icc/current
+setenv ICC_PATH $ICC_HOME/bin
+
+#synopsys icv
+setenv ICV_HOME $SYNOPSYS_ROOT/icv/current
+setenv ICV_PATH $ICV_HOME/bin/AMD.64
+
+#synopsys icw
+setenv ICW_HOME $SYNOPSYS_ROOT/icw/G-2012.06-SP2
+setenv ICW_PATH $ICW_HOME/bin
+
+#synopsys mw
+setenv MW_HOME $SYNOPSYS_ROOT/mw/G-2012.06
+setenv MW_PATH $MW_HOME/bin/AMD.64
+
+#synopsys pt
+setenv PT_HOME $SYNOPSYS_ROOT/pt/H-2012.12-SP3-7
+setenv PT_PATH $PT_HOME/bin
+
+#synopsys formality
+setenv FORMALITY_HOME /tools/synopsys/formality/G-2012.06
+setenv FORMALITY_PATH $FORMALITY_HOME/bin
+
+
+# Xilinx setup
+#source /tools/xilinx/14.2/ISE_DS/settings64.csh
+
+set path = ( $path \
+        $RCPATH \
+        ${IUSHOME}/tools/bin \
+        ${MMSIM_HOME}/tools/bin \
+        ${MGC_HOME}/bin \
+        ${CDS_INST_DIR}/bin \
+        ${CDS_INST_DIR}/tools/bin \
+        ${CDS_INST_DIR}/tools/dfII/bin \
+        ${CDS_INST_DIR}/tools/plot/bin \
+        ${ASSURAHOME}/tools/assura/bin \
+        ${HSPICE_HOME}/bin \
+        ${BDA_ROOT}/bin \
+        ${ISG_CAD_ROOT}/bin \
+        ${INSTALLER_PATH} \
+        ${PT_PATH} \
+        ${VCS_PATH} \
+        ${DC_PATH} \
+        ${ICC_PATH} \
+        ${ICV_PATH} \
+        ${ICW_PATH} \
+        ${MW_PATH} \
+        ${FORMALITY_PATH} \
+        ${HPEESOF_PATH} \
+     )
+#        ${CNI_PLAT_ROOT}/3rd/bin \
+#        ${CNI_PLAT_ROOT}/3rd/oa/bin/linux_rhel30_gcc411_32/opt \
+#        ${CNI_PLAT_ROOT}/bin \
+#        ${CNI_ROOT}/bin \
+#     )
+
+#set LD_LIBRARY_PATH = ( ${LD_LIBRARY_PATH} \
+#        ${CNI_PLAT_ROOT}/3rd/lib \
+#        ${CNI_PLAT_ROOT}/3rd/oa/lib/linux_rhel30_gcc411_32/opt \
+#        ${CNI_PLAT_ROOT}/lib \
+#    )
+
+#set PYTHONPATH = ( ${PYTHONPATH} \
+#        ${CNI_PLAT_ROOT}/pyext \
+#        ${CNI_PLAT_ROOT}/lib \
+#    )
+
+source ${HSPICE_HOME}/bin/cshrc.meta
+
+# Delete IUSHOME from path
+#set path = `echo $path | sed -e 's/\/tools\/cadence\/IUS\/IUS82_USR5_lnx\/tools\/bin//'`
+## Delete MMSIM111
+#set path = `echo $path | sed -e 's/\/tools\/cadence\/MMSIM\/MMSIM111\/tools\/bin//'`
+#set path = `echo $path | sed -e 's/\/tools\/synopsys\/pt\/current\/bin//'`
+#set path = `echo $path | sed -e 's/\/tools\/synopsys\/vcs\/current\/bin//'`
+#set path = `echo $path | sed -e 's/\/tools\/synopsys\/vcs\/current\/bin//'`
+umask 003
+
