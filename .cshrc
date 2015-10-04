@@ -23,6 +23,10 @@ source /tools/support/lsf/conf/cshrc.lsf
 set cdpath = ~
 setenv OPENWINHOME /usr/openwin
 
+# Make autocompletion case insensitive
+set autolist = ambiguous
+set complete = enhance
+
 umask 022
 eval `dircolors -c ~/solarized/dircolors-solarized/dircolors.256dark`
 

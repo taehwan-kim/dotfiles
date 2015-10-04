@@ -1,6 +1,7 @@
 syntax enable
 filetype off
 filetype plugin indent on
+
 set expandtab
 set shiftwidth=4
 set softtabstop=4
@@ -46,6 +47,7 @@ Plugin 'kevinw/pyflakes-vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'majutsushi/tagbar'
 Plugin 'Raimondi/delimitMate'
+Plugin 'scrooloose/nerdcommenter'
 " Plugin 'Valloric/YouCompleteMe'
 
 " plugin on GitHub repo
@@ -68,9 +70,9 @@ Plugin 'Raimondi/delimitMate'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-filetype plugin indent on    " required
+" filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
-"filetype plugin on
+filetype plugin on
 "
 " Brief help
 " :PluginList       - lists configured plugins
@@ -85,6 +87,73 @@ map <silent> <C-n> :NERDTreeToggle<CR>
 map <silent> <C-t> :TagbarToggle<CR>
 
 let NERDTreeQuitOnOpen = 1 
+let NERDTreeShowHidden = 1
 let g:NERDTreeDirArrows = 0
 let g:tagbar_usearrows = 1
+
+let mapleader ="-"
+
+" Leader Shortcuts
+" ----------------
+
+" Vertical split then hop to new buffer
+" ,v to create a new vertical split
+noremap <Leader>v :vsplit<CR>
+
+" Horizontal split
+" ,h to create a new horizontal split
+noremap <Leader>h :split<CR>
+
+" Make forward and back easier
+" Shift-j to move a page down
+" Shift-k to move a page up
+nmap <S-j> <C-F>
+nmap <S-k> <C-B>
+
+
+
+" Tab configuration
+" ,tn makes a new tab
+nmap <leader>tn :tabnew<cr>
+" ,te edits a file in a new tab
+nmap <leader>te :tabedit
+
+" ]p will paste with the same level of indent as the line above
+
+" m <letter> will mark a section
+" ` <letter> (backtick will return)
+" `. goes to last edited line
+
+" ,/ to clear highlights
+nnoremap <leader>/ :noh<cr>
+
+" Tab hotkeys
+" ctrl-h to move to the left
+" ctrl-l to move to the right
+nmap <C-h> :tabprev<CR>
+nmap <C-l> :tabnext<CR>
+
+" Vim Settings
+" ------------
+
+" set autoindent
+set encoding=utf-8
+set autoread
+set ttyfast
+set ruler
+set smartcase
+set showmatch
+set title
+set gdefault
+
+set formatoptions=tcq
+
+if has('statusline')
+    set laststatus=2
+    set statusline=%<%f\                        " Filename
+    set statusline+=%w%h%m%r                    " 
+    set statusline+=%{fugitive#statusline()}    " 
+    set statusline+=\ [%{getcwd()}]             " 
+    set statusline+=%=%-14.(%l,%c%V%)\ %p%%     " 
+endif
 
