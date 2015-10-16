@@ -1,6 +1,3 @@
-set MODULEPATH = $MODULEPATH':'$HOME/privatemodules
-setenv MODULEPATH $MODULEPATH
-setenv TERM "xterm-256color"
 
 # Setup Modulefiles
 
@@ -16,6 +13,11 @@ setenv CDS_Netlisting_Mode "Analog"
 
 # Set the default editor to be vim
 setenv EDITOR vim
+
+# SBT path setup
+setenv SBT_HOME ~/sbt 
+setenv SBT_PATH $SBT_HOME/bin
+setenv PATH ${SBT_PATH}:$PATH
 
 # setup calibre
 setenv MGC_HOME /tools/mentor/calibre/ixl_cal_2013.2_18.13
@@ -103,6 +105,10 @@ setenv MW_PATH $MW_HOME/bin/AMD.64
 setenv PT_HOME $SYNOPSYS_ROOT/pt/H-2012.12-SP3-7
 setenv PT_PATH $PT_HOME/bin
 
+#synopsys starrc
+setenv STARRC_HOME $SYNOPSYS_ROOT/starrcxt/J-2014.06-SP3
+setenv STARRC_PATH $STARRC_HOME/bin
+
 #synopsys formality
 setenv FORMALITY_HOME /tools/synopsys/formality/G-2012.06
 setenv FORMALITY_PATH $FORMALITY_HOME/bin
@@ -133,6 +139,7 @@ set path = ( $path \
         ${ICW_PATH} \
         ${MW_PATH} \
         ${FORMALITY_PATH} \
+        ${STARRC_PATH} \
         ${HPEESOF_PATH} \
      )
 #        ${CNI_PLAT_ROOT}/3rd/bin \
@@ -161,5 +168,4 @@ source ${HSPICE_HOME}/bin/cshrc.meta
 #set path = `echo $path | sed -e 's/\/tools\/synopsys\/pt\/current\/bin//'`
 #set path = `echo $path | sed -e 's/\/tools\/synopsys\/vcs\/current\/bin//'`
 #set path = `echo $path | sed -e 's/\/tools\/synopsys\/vcs\/current\/bin//'`
-umask 003
 

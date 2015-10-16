@@ -1,20 +1,24 @@
-#!	/bin/csh
-#	This is the standard initial .cshrc file for new accounts
-#	Last updated: 15June2006
-#
+#!/bin/csh
+# This is the standard initial .cshrc file for new accounts
+
 limit coredumpsize 0
 
-#
-#	Set up PATH, MANPATH, and TEXINPUTS
-#
+
+# Set up PATH, MANPATH, and TEXINPUTS
+
 if ( -e /usr/cluster/bin/setpath ) then
     source /usr/cluster/bin/setpath
 endif
 
-source /users/taehwan/.cshrc.mine
+setenv TERM "xterm-256color"
+set MODULEPATH = $MODULEPATH':'$HOME/privatemodules
+setenv MODULEPATH $MODULEPATH
+source $HOME/.cshrc.mine
 
 # Source alias
-#
+if ( -e ~/.alias ) then
+	source ~/.alias
+endif
 
 # Setup LSF
 setenv LBS_BASE_SYSTEM LBS_LSF
@@ -48,14 +52,14 @@ if ($?prompt) then
 	setenv EXINIT "set ai"
 endif
 
-if ( -e ~/.alias ) then
-	source ~/.alias
-endif
-
 #
 # Uncomment the "setxkbmap" command below to swap Ctrl and Caps Lock keys.
 # More detailed information can be found on Linux hosts in the file:
 # /usr/X11R6/lib/X11/xkb/rules/xorg.lst 
 #
 #setxkbmap -option ctrl:swapcaps
+
+if ( $?prompt && -x /usr/bin/git && -x $HOME/dotfiles/gitprompt.pl ) then
+    alias precmd $HOME/dotfiles/gitprompt.pl
+endif
 

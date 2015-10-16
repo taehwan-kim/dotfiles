@@ -48,6 +48,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'majutsushi/tagbar'
 Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'derekwyatt/vim-scala'
 " Plugin 'Valloric/YouCompleteMe'
 
 " plugin on GitHub repo
