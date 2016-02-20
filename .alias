@@ -1,0 +1,25 @@
+# Aliases
+alias a alias
+a ls        'ls -aFXl --group-directories-first --color=auto --block-size=kB'
+
+a src	    'cd $PROJSRC'
+a cds	    'cd $PROJCDS'
+a b1        'ssh -Y bwrcr720-1.eecs.berkeley.edu'
+a b2        'ssh -Y bwrcr820-2.eecs.berkeley.edu'
+a b3        'ssh -Y bwrcr820-3.eecs.berkeley.edu'
+a gmachine  'ssh bwrcdpt3610-02'
+a 242a      'ssh -X ee142-au@t7400-1.eecs.berkeley.edu'
+a 240b      'ssh -X ee240b-bn@hpse-9.eecs.berkeley.edu'
+a 820       'ssh -X bwrcr820-1.eecs.berkeley.edu'
+
+a icfb 'bsub -q priority virtuoso'
+a scratch    'cd /tools/scratch/taehwan'
+a dspace    'cd /tools/designs/taehwan'
+a isg       'cd /tools/designs/ISG/isg_chips/projects'
+a mc       'cd /tools/designs/ISG/isg_chips/projects/eos24/user/sunchen/eos24_src/verilog/multi-cell'
+a mpc       'cd /tools/designs/ISG/isg_chips/projects/mpc_equalizer'
+a eos       'cd /tools/designs/ISG/isg_chips/projects/eos24'
+a lidar       'cd /tools/designs/ISG/isg_chips/projects/ephi_lidar'
+a mpcsy       'cd /tools/designs/ISG/isg_chips/projects/mpc_equalizer/user/taehwan/mpc_equalizer_synopsys'
+a matlab    '/tools/mathworks/matlabR2014b/bin/matlab'
+a raven     'cd /tools/designs/taehwan/project/raven3p5-chip/'
