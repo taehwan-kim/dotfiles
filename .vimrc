@@ -1,8 +1,8 @@
 syntax enable
-filetype off
-filetype plugin indent on
+"filetype off
+"filetype plugin indent on
 
-set expandtab
+"set expandtab
 set shiftwidth=4
 set softtabstop=4
 "set number

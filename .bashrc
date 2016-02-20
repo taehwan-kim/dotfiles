@@ -248,7 +248,7 @@ set -o vi
 # Added by Canopy installer on 2013-11-26
 # VIRTUAL_ENV_DISABLE_PROMPT can be set to '' to make bashprompt show that Canopy is active, otherwise 1
 #VIRTUAL_ENV_DISABLE_PROMPT=1 source /users/bmzimmer/designs/install/Enthought/Canopy/User/bin/activate
-source ~/Downloads/mintty-colorssolarized/mintty-solarized-dark.sh
+#source ~/Downloads/mintty-colorssolarized/mintty-solarized-dark.sh
 
 alias vi="/usr/bin/vim"
 #eval `dircolors -c  ~/Downloads/git-clones/dircolors-solarized/dircolors.256dark`

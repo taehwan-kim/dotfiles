@@ -78,7 +78,7 @@ setenv SYNOPSYS_ROOT /tools/synopsys
 setenv INSTALLER_PATH $SYNOPSYS_ROOT/installer
 
 # synopsys vcs
-setenv VCS_HOME $SYNOPSYS_ROOT/vcs/G-2012.09
+setenv VCS_HOME $SYNOPSYS_ROOT/vcs/current
 setenv VCS_PATH $VCS_HOME/bin
 
 # synopsys dc
@@ -110,12 +110,12 @@ setenv STARRC_HOME $SYNOPSYS_ROOT/starrcxt/J-2014.06-SP3
 setenv STARRC_PATH $STARRC_HOME/bin
 
 #synopsys formality
-setenv FORMALITY_HOME /tools/synopsys/formality/G-2012.06
+setenv FORMALITY_HOME /tools/synopsys/formality/current
 setenv FORMALITY_PATH $FORMALITY_HOME/bin
 
 
 # Xilinx setup
-#source /tools/xilinx/14.2/ISE_DS/settings64.csh
+source /tools/xilinx/14.7/ISE_DS/settings64.csh
 
 set path = ( $path \
         $RCPATH \
