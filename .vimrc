@@ -158,3 +158,8 @@ if has('statusline')
     set statusline+=%=%-14.(%l,%c%V%)\ %p%%     " 
 endif
 
+nmap <leader>sp :set paste<cr>
+nmap <leader>np :set nopaste<cr>
+
+set mouse=a
+
