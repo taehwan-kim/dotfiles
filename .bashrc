@@ -1,259 +1,146 @@
-# .bashrc
-# Brian Zimmer, bmzimmer@eecs.berkeley.edu
-#
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
 
 # If not running interactively, don't do anything
-#[ -z "$PS1" ] && return
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
 
-# Include local settings
-if [ -f ~/.bash_local ]; then
-    . ~/.bash_local
-fi
-
-
-# Aliases
-# -------
-# Display the real path for pwd
-#alias sram="cd /scratch/bmzimmer/raven3_sram"
-#alias sramsim="cd /scratch/bmzimmer/raven3_sram/simulation"
-alias diskspace="du -ch --max-depth=1 ."
-#alias ee241ta="ssh -X ee241-ta@icluster9.eecs.berkeley.edu"
-#alias ee241="ssh -X ee241@icluster9.eecs.berkeley.edu"
-alias pwd2="cd \`readlink -f .\`"
-#alias viewgds="calibredrv -dl $DKITROOT/DATA/CALIBRE/calibre_tools/CalibreDrv.layerprops -s /users/bmzimmer/.calibrewb_workspace/wbinit.tcl -m "
-alias d="ls -h "
-#alias tpwd="pwd > ~/.tpwd"
-#alias tcd="cd `cat ~/.tpwd`"
-alias raven="source ~/raven/st28nm_tech_include/sourceme.sh"
-alias mpcsrc="source ~/top_st28_mpc/st28nm_tech_include/sourceme.sh"
-alias r8201="ssh -X bwrcr820-1.eecs.berkeley.edu"
-alias r7202="ssh -X bwrcr720-2.eecs.berkeley.edu"
-alias r7203="ssh -X bwrcr720-3.eecs.berkeley.edu"
-alias r7204="ssh -X bwrcr720-4.eecs.berkeley.edu"
-alias r7205="ssh -X bwrcr720-5.eecs.berkeley.edu"
-alias r7206="ssh -X bwrcr720-6.eecs.berkeley.edu"
-vman() { /usr/bin/man $* | col -b | vim -c 'set ft=man nomod nolist' -; }
-alias man='vman'
-
-alias dc='dc_shell-xg-t -64bit -topographical_mode -x "source dc_setup.tcl" '
-alias dcg='dc_shell-xg-t -64bit -topographical_mode -gui -x "source dc_setup.tcl" '
-alias icc='icc_shell -64bit'
-alias iccg='icc_shell -64bit -gui'
-
-if [ $(uname) == "Linux" ]; then
-	alias ls="ls -hF --color" # normal color
-	alias ll="ls -l -h --color" # put directories first
-	alias la="ls -a -h --color" # show hidden files
-	alias lal="ls -a -l -h --color"
-	alias lrt="ls -lrt --color" # show last recently used
-	alias grep="grep --color"
-else
-	alias ls="ls -hF" # normal color
-	alias ll="ls -l -h" # put directories first
-	alias la="ls -a -h" # show hidden files
-	alias lal="ls -a -l -h"
-	alias lrt="ls -lrt" # show last recently used
-	alias grep="grep"
-fi
-alias g=git 
-complete -o default -o nospace -F _git g
-alias tree="tree -Csu" # See file tree
-alias c="clear"
-alias h="history"
-alias m="more"
-alias mkdir="mkdir -p"
-alias home="cd ~"
-alias lo="logout"
-#alias d="dirs"
-alias v="gvim"
-#alias vim="vim -X"
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../../"
-alias path='echo -e ${PATH//:/\\n}'
-alias rgrep="find . -name "*" | xargs grep"
-alias ltspice="wine ~/.wine/drive_c/Program\ Files/LTC/LTspiceIV/scad3.exe"
-alias cs250="ssh -i .ssh/bmzimmer_inst -X cs250@icluster17.eecs.berkeley.edu"
-alias cs250bz="ssh -X icluster17.eecs.berkeley.edu"
-#alias ta="cd /Users/bmzimmer/Documents/School/EE/ta_cs250/cs250-2011-fall"
-alias i16="ssh -X icluster16.eecs.berkeley.edu"                                                               
-alias i17="ssh -X icluster17.eecs.berkeley.edu"
-alias i18="ssh -X icluster18.eecs.berkeley.edu"
-alias i19="ssh -X icluster19.eecs.berkeley.edu"
-alias i20="ssh -X icluster20.eecs.berkeley.edu"
-alias i21="ssh -X icluster21.eecs.berkeley.edu"
-alias i22="ssh -X icluster22.eecs.berkeley.edu"
-alias getnx="echo \"export DISPLAY=$DISPLAY\" > ~/.nxdisplay"
-alias setnx="source ~/.nxdisplay"
-alias en="mailx brianzimmer.120ad@m.evernote.com < "
-#alias raven1="cd ~/designs/raven1_sram_defect_testing/opal_kelly/matlab"
-
-alias scratch="cd /tools/scratch/taehwan"
-alias dspace="cd /tools/designs/taehwan"
-alias isg="cd /tools/designs/ISG/isg_chips/projects"
-alias mc="cd /tools/designs/ISG/isg_chips/projects/eos24/user/sunchen/eos24_src/verilog/multi-cell"
-alias mpc="cd /tools/designs/ISG/isg_chips/projects/mpc_equalizer"
-alias eos="cd /tools/designs/ISG/isg_chips/projects/eos24"
-alias mpcsy="cd /tools/designs/ISG/isg_chips/projects/mpc_equalizer/user/taehwan/mpc_equalizer_synopsys"
-alias src="cd /tools/designs/ISG/isg_chips/projects/eos24/user/taehwan/eos24_src"
-alias cds="cd /tools/designs/ISG/isg_chips/projects/mpc_equalizer/user/taehwan/mpc_equalizer_cds"
-alias matlab="/tools/mathworks/matlabR2012a/bin/matlab"
-#alias raven="cd /tools/designs/taehwan/project/raven3p5-chip/"
-#alias raven="cd /tools/designs/taehwan/project/raven3p5-chip/"
-
-
-
-# Display the stack of directories and prompt
-    # the user for an entry.
-    #
-    # If the user enters 'p', pop the stack.
-    # If the user enters a number, move that
-    # directory to the top of the stack
-    # If the user enters 'q', don't do anything.
-    #
-    function display_stack
-    {
-        dirs -v
-        echo -n "#: "
-        read dir
-        if [[ $dir = 'p' ]]; then
-            pushd > /dev/null
-        elif [[ $dir != 'q' ]]; then
-            d=$(dirs -l +$dir);
-            popd +$dir > /dev/null
-            pushd "$d" > /dev/null
-        fi
-    }
-    alias d=display_stack
-
-#    function stack_cd {
-#        if [ $1 ]; then
-#            # use the pushd bash command to push the directory
-#            # to the top of the stack, and enter that directory
-#            pushd "$1" > /dev/null
-#            ls -F
-#        else
-#            # the normal cd behavior is to enter $HOME if no
-#            # arguments are specified
-#            pushd $HOME > /dev/null
-#        fi
-#    }
-#    # the cd command is now an alias to the stack_cd function
-#    #
-#    alias cd=stack_cd
-
-# cd then ls
-#function cd {
-#    builtin cd "$@" && ls -F
-#}
-
-# Functions
-# ---------
-# Find a file with a pattern in name:
-# eg. ff filename
-function ff() { find . -type f -iname '*'$*'*' -ls ; }
-
-# List directories
-function lsd() {
-    ls -F "$@" | grep \/$
-}
-
-function sar() {
-	ack $1
-	echo -e "\n"
-	read -p "Replace \"$1\" with \"$2?\" (y or n) " -n 1
-	if [[ ! $REPLY =~ ^[Yy]$ ]]
-	then 
-		echo -e"\nNevermind...\n"
-	else
-		echo -e "\n"
-		ack -l $1 | xargs perl -pi -e "s/$1/$2/g"
-		ack $2
-		echo -e "\n"
-	fi
-}
-
-alias hs='history | grep -i' 
-
-# See my processes
-function my_ps() { ps $@ -u $USER -o pid,%cpu,%mem,bsdtime,command ; }
-function pp() { my_ps f | awk '!/awk/ && $0~var' var=${1:-".*"} ; }
-
-#export ztmux_pane=$(tmux show-messages | tail -1 | grep -o 'current pane [0-9]' | sed -e 's/current pane \([0-9]\)/\1/')
-#export ztmux_window=$(tmux show-messages | tail -1 | grep -o '\[[0-9]\] \([0-9]\)' | grep -o '[0-9]$')
-# Set prompt
-# -----------------------------
-#PS1='\[\e]1;`pwdtail`\a\]\n\[\033[0;32m\]\u@\h$(__git_ps1 " (%s)") W$(echo $ztmux_window),P$(echo $ztmux_pane) \[\033[33m\]\w\n\[\033[0m\]> '
-PS1='\[\e]1;`pwdtail`\a\]\n\[\033[0;32m\]\u@\h \[\033[33m\]\w\n\[\033[0m\]> '
-pwdtail () { #returns the last 2 fields of the working directory
-    pwd|awk -F/ '{nlast = NF -1;print $nlast"/"$NF}'
-}
-
-export TERM="xterm-256color"
-#export TERM="konsole-256color"
-
-# Bash Options
-shopt -s cdspell                    # autocorrects cd misspellings
-shopt -s checkwinsize               # update the value of LINES and COLUMNS after each command if altered
-shopt -s cmdhist                    # save multi-line commands in history as single line
-shopt -s dotglob                    # include dotfiles in pathname expansion
-shopt -s expand_aliases             # expand aliases
-shopt -s extglob                    # enable extended pattern-matching features
-shopt -s nocaseglob                 # pathname expansion will be treated as case-insensitive
-shopt -s no_empty_cmd_completion    # No empty completion
-
-# Keep history in sync across multiple terminals constantly
-# Append History instead of overwriting file.
+# append to the history file, don't overwrite it
 shopt -s histappend
-# save lots of history
-unset HISTFILESIZE
-export HISTSIZE=100000
-# save history whenever new prompt spit out
-#export PROMPT_COMMAND="history -n; history -a"
-export PROMPT_COMMAND="history -a"
-# erase duplicates
-#export HISTCONTROL=ignoredups:erasedups
 
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
 
-# If start typing a command, then this will
-# find all commands that start with this
-bind '"\e[A":history-search-backward'
-bind '"\e[B":history-search-backward'
-# Trick: Ctrl-P will go back commands
-# Trick: Ctrl-R will search history
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
 
-bind '"\C-l":history-search-backward'
-# Ctrl-p: search in previous history
-bind 'Control-l: history-search-backward'
-bind -m vi-insert 'Control-l: history-search-backward'
-bind -m vi-command 'Control-l: history-search-backward'
-bind -m vi-command ".":insert-last-argument
-bind -m vi-insert "\C-a.":beginning-of-line
-bind -m vi-insert "\C-e.":end-of-line
-bind -m vi-insert "\C-w.":backward-kill-word
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
 
-# Make completion not be case sensitive
-bind 'set completion-ignore-case on'
-# Turn off that stupid bell
-bind "set bell-style none"
-bind "set show-all-if-ambiguous on"
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-if [ -f ~/dotfiles/bashcompletion/bash_completion ]; then
-			. ~/dotfiles/bashcompletion/bash_completion
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-set -o vi
+# set a fancy prompt (non-color, unless we know we "want" color)
 
-# Added by Canopy installer on 2013-11-26
-# VIRTUAL_ENV_DISABLE_PROMPT can be set to '' to make bashprompt show that Canopy is active, otherwise 1
-#VIRTUAL_ENV_DISABLE_PROMPT=1 source /users/bmzimmer/designs/install/Enthought/Canopy/User/bin/activate
-#source ~/Downloads/mintty-colorssolarized/mintty-solarized-dark.sh
+#case "$TERM" in
+	#rxvt-unicode|*-256color) color_prompt=yes;;
+#esac
 
-alias vi="/usr/bin/vim"
-#eval `dircolors -c  ~/Downloads/git-clones/dircolors-solarized/dircolors.256dark`
+#case "$TERM" in
+    #xterm-color|*-256color) color_prompt=yes;;
+#esac
 
-alias ls="ls -a --color=auto"
-export TERM='xterm-256color'
-export CLICOLOR=1
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+#force_color_prompt=yes
 
+#if [ -n "$force_color_prompt" ]; then
+    #if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	## We have color support; assume it's compliant with Ecma-48
+	## (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	## a case would tend to support setf rather than setaf.)
+	#color_prompt=yes
+    #else
+	#color_prompt=
+    #fi
+#fi
+
+#if [ "$color_prompt" = yes ]; then
+    ##PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+	##PS1='\[\e]1;`pwdtail`\a\]\n\[\033[0;32m\]\u@\h \[\033[33m\]\w\n\[\033[0m\]> '
+    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[33m\]:\w\n\[\033[0m\]\$ '
+       ##\[\033[00m\]
+	##:\[\033[01;34m\]\w\[\033[00m\]\$ '
+#else
+    #PS1='${debian_chroot:+($debian_chroot)}\u@:\w\$ '
+#fi
+#unset color_prompt force_color_prompt
+
+## If this is an xterm set the title to user@host:dir
+#case "$TERM" in
+#xterm*|rxvt*)
+    #PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    #;;
+#*)
+    #;;
+#esac
+
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[33m\]:\w\n\[\033[0m\]\$ '
+
+# enable color support of ls and also add handy aliases
+#if [ -x /usr/bin/dircolors ]; then
+    #test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+eval "$(dircolors ~/.dircolors)";
+alias ls='ls -a --color=auto'
+	#alias ls='ls -a'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+#fi
+
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+#if ! shopt -oq posix; then
+  #if [ -f /usr/share/bash-completion/bash_completion ]; then
+    #. /usr/share/bash-completion/bash_completion
+  #elif [ -f /etc/bash_completion ]; then
+    #. /etc/bash_completion
+  #fi
+
+alias lmk='latexmk -pdf -bibtex-cond -pv --file-line-error -halt-on-error'
+alias lmkc='latexmk -C'
+
+alias matlab='/home/taehwan/MATLAB/R2018b/bin/matlab'
+alias chrome='google-chrome-stable'
+alias hiber='sudo pm-hibernate'
+
+source /home/taehwan/anaconda3/etc/profile.d/conda.sh
+conda activate taehwan3
+xinput set-prop 15 "Device Enabled" 0
+
+export PATH=$PATH:/home/taehwan/Zotero_bin
+#export COLORTERM='rxvt-unicode-256color'
+
+alias wifick='nmcli dev wifi'
+alias tpoff='xinput set-prop 15 "Device Enabled" 0'

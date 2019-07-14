@@ -1,8 +1,15 @@
-syntax enable
 "filetype off                  " required
+set path+=**
+set wildmenu
+
 set tabstop=4
 set shiftwidth=4
-"set number
+set t_Co=256
+set number
+set cursorline
+
+"set termguicolors
+"set -g default-terminal "screen-256color"
 
 "set background=dark
 "let g:solarized_termtrans=1
@@ -33,6 +40,7 @@ Plugin 'VundleVim/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 
+Plugin 'lervag/vimtex'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'ervandew/supertab'
@@ -48,6 +56,7 @@ Plugin 'morhetz/gruvbox'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
+syntax enable
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
@@ -62,13 +71,14 @@ filetype plugin indent on    " required
 
 map <silent> <C-n> :NERDTreeToggle<CR>
 "map <silent> <C-t> :TagbarToggle<CR>
-map <silent> <C-t> :! lmk %<CR>
-map <silent> <C-m> :! make<CR>
+"map <silent> <C-t> :! latexmk -pdf -bibtex-cond -pv --file-line-error -halt-on-error %<CR>
+"map <silent> <C-m> :! make<CR>
 
 let NERDTreeQuitOnOpen = 1
 let NERDTreeShowHidden = 1
 let g:NERDTreeDirArrows = 0
 let g:tagbar_usearrows = 1
+let g:NERDTreeWinSize=30
 
 let mapleader ="-"
 nmap <S-j> <C-F>
@@ -100,6 +110,7 @@ set formatoptions=tcq
 
 nmap <C-h> :tabprev<CR>
 nmap <C-l> :tabnext<CR>
+nmap <leader>p "+p
 
 nmap <leader>tn :tabnew<cr>
 nmap <leader>te :tabedit
@@ -113,9 +124,24 @@ set mouse=a
 
 colorscheme gruvbox
 
-let g:gruvbox_italic = 1
+let g:gruvbox_italic = 0
 let g:gruvbox_contrast_dark = 'medium'
+let g:gruvbox_termcolors = 256
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='gruvbox'
+let g:airline_powerline_fonts = 1
+let g:NERDTreeNodeDelimiter = "\u00a0"
+
 "let g:vimtex_disable_version_warning = 1
+let g:tex_flavor='latex'
+let g:vimtex_view_general_viewer='zathura'
+let g:vimtex_view_method='zathura'
+"let g:vimtex_quickfix_mode=0
+"set conceallevel=1
+"let g:tex_concel='abdmg'
+let g:vimtex_compiler_latexmk = {'continuous' : 0}
+
+"let macvim_skip_colorscheme=1
+set background=dark
+set display=lastline
