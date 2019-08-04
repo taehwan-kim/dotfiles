@@ -47,7 +47,7 @@
 #TERM rxvt-cygwin
 #TERM rxvt-cygwin-native
 #TERM rxvt-unicode
-#TERM rxvt-unicode-256color
+TERM rxvt-unicode-256color
 #TERM rxvt-unicode256
 #TERM screen
 #TERM screen-256color
@@ -61,7 +61,7 @@
 #TERM vt100
 #TERM xterm
 #TERM xterm-16color
-TERM xterm-256color
+#TERM xterm-256color
 #TERM xterm-88color
 #TERM xterm-color
 #TERM xterm-debian

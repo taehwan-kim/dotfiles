@@ -35,11 +35,16 @@
 *color7:  #a89984
 *color15: #ebdbb2
 
-URxvt*.font: xft:Hack:size=12:antialias=true
+!rxvt*.font: xft:Hack:size=12:antialias=true
+!rxvt*.scrollBar: false
+!rxvt*.transparent: false
+!rxvt*.termName: rxvt-unicode-256color
+
+URxvt*.font: xft:Hack:size=8:antialias=true
 URxvt*.scrollBar: false
 URxvt*.transparent: false
 URxvt*.termName: rxvt-unicode-256color
 
 xterm*faceName: Hack
-xterm*faceSize: 12
+xterm*faceSize: 8
 xterm*renderFont: true

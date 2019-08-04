@@ -10,16 +10,18 @@ if ( -e /usr/cluster/bin/setpath ) then
     source /usr/cluster/bin/setpath
 endif
 
-setenv TERM "xterm-256color"
-set MODULEPATH = $MODULEPATH':'$HOME/privatemodules
+#setenv TERM "xterm-256color"
+#set MODULEPATH = $MODULEPATH':'$HOME/privatemodules
+#setenv MODULEPATH $MODULEPATH
+
+if ( $?MODULEPATH ) then
+    set MODULEPATH = $MODULEPATH':'$HOME/privatemodules
+else
+    set MODULEPATH = '$HOME/privatemodules'
+endif
 setenv MODULEPATH $MODULEPATH
-source $HOME/.cshrc.mine
 
 # Source alias
-if ( -e ~/.alias ) then
-	source ~/.alias
-endif
-
 # Setup LSF
 setenv LBS_BASE_SYSTEM LBS_LSF
 source /tools/support/lsf/conf/cshrc.lsf
@@ -31,9 +33,9 @@ setenv OPENWINHOME /usr/openwin
 set autolist = ambiguous
 set complete = enhance
 
-mask 022
+umask 022
 #eval `dircolors -c ~/solarized/dircolors-solarized/dircolors.256dark`
-eval `dircolors -c ~/.dircolors`
+eval `dircolors ~/.dircolors`
 
 if ($?prompt) then
 	set history = 100
@@ -52,6 +54,13 @@ if ($?prompt) then
 	setenv PAGER /bin/more
 	setenv EXINIT "set ai"
 endif
+
+if ( -e ~/.alias ) then
+	source ~/.alias
+endif
+
+source $HOME/.cshrc.mine
+
 
 #
 # Uncomment the "setxkbmap" command below to swap Ctrl and Caps Lock keys.
