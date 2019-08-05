@@ -194,6 +194,7 @@ setenv MATLABPATH  ${MMSIM_HOME}/tools/spectre/matlab
 
 source ${HSPICE_HOME}/bin/cshrc.meta
 
+#setenv BAG_WORK_DIR /tools/projects/taehwan/BAG2_cds_ff_mpt
 # Delete IUSHOME from path
 #set path = `echo $path | sed -e 's/\/tools\/cadence\/IUS\/IUS82_USR5_lnx\/tools\/bin//'`
 ## Delete MMSIM111

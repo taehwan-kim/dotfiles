@@ -61,6 +61,7 @@ endif
 
 source $HOME/.cshrc.mine
 
+source $HOME/.xinitrc
 
 #
 # Uncomment the "setxkbmap" command below to swap Ctrl and Caps Lock keys.
@@ -73,3 +74,6 @@ if ( $?prompt && -x /usr/bin/git && -x $HOME/dotfiles/gitprompt.pl ) then
     alias precmd $HOME/dotfiles/gitprompt.pl
 endif
 
+if ("$TERM" == "xterm") then
+	setenv TERM "xterm-256color"
+endif

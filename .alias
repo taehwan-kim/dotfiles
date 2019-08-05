@@ -23,3 +23,7 @@ a lidar       'cd /tools/designs/ISG/isg_chips/projects/ephi_lidar'
 a mpcsy       'cd /tools/designs/ISG/isg_chips/projects/mpc_equalizer/user/taehwan/mpc_equalizer_synopsys'
 a matlab    '/tools/mathworks/matlabR2014b/bin/matlab'
 a raven     'cd /tools/designs/taehwan/project/raven3p5-chip/'
+a compute 	'bsub -I -XF xterm'
+a pych '~/pycharm-2019.2/bin/pycharm.sh'
+
+a tls 'tmux ls'

@@ -145,3 +145,8 @@ let g:vimtex_compiler_latexmk = {'continuous' : 0}
 "let macvim_skip_colorscheme=1
 set background=dark
 set display=lastline
+
+if &term =~ '256color'
+	set t_ut=
+endif
+
