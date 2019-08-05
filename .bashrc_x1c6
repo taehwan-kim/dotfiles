@@ -132,6 +132,7 @@ alias lmk='latexmk -pdf -bibtex-cond -pv --file-line-error -halt-on-error'
 alias lmkc='latexmk -C'
 
 alias matlab='/home/taehwan/MATLAB/R2018b/bin/matlab'
+alias mcli='matlab -nosplash -nodesktop'
 alias chrome='google-chrome-stable'
 alias hiber='sudo pm-hibernate'
 
@@ -144,6 +145,10 @@ export PATH=$PATH:/home/taehwan/Zotero_bin
 
 alias wifick='nmcli dev wifi'
 alias tpoff='xinput set-prop 15 "Device Enabled" 0'
+
+alias tls='tmux ls'
+alias tat='tmux attach-session'
+alias tns='tmux new'
 
 # in case of ibus failure:
 # ibus-daemon &
