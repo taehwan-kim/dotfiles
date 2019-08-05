@@ -1,0 +1,18 @@
+# Improve colors
+#set -g default-terminal 'tmux-256color'
+
+# remap prefix to Control + a
+set -g prefix C-a
+unbind C-b
+bind C-a send-prefix
+
+##### PREFERENCES
+
+# Lower the default tmux delay, this makes tmux more responsive.
+set -s escape-time 1
+# Enable mouse.
+set -g mouse-select-pane on
+set -g mouse-resize-pane on
+set -g mode-mouse on
+# scroll history
+set -g history-limit 30000

@@ -27,3 +27,5 @@ a compute 	'bsub -I -XF xterm'
 a pych '~/pycharm-2019.2/bin/pycharm.sh'
 
 a tls 'tmux ls'
+a tat 'tmux attach-session'
+a tns 'tmux new'

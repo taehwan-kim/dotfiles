@@ -50,6 +50,7 @@ Plugin 'scrooloose/nerdcommenter'
 "Plugin 'majutsushi/tagbar'
 Plugin 'Raimondi/delimitMate'
 Plugin 'morhetz/gruvbox'
+Plugin 'mhinz/vim-startify'
 
 "Plugin 'kevinw/pyflakes-vim'
 "Plugin 'lervag/vimtex'
