@@ -12,3 +12,5 @@ bind C-a send-prefix
 set -s escape-time 1
 # Enable mouse.
 set -g mouse on
+# Scroll history
+set -g history-limit 30000
