@@ -127,11 +127,13 @@ fi
   #elif [ -f /etc/bash_completion ]; then
     #. /etc/bash_completion
   #fi
+export PATH=/home/taehwan/MATLAB/R2018b/bin:$PATH
+export PATH=~/tmux_scripts:$PATH
 
 alias lmk='latexmk -pdf -bibtex-cond -pv --file-line-error -halt-on-error'
 alias lmkc='latexmk -C'
 
-alias matlab='/home/taehwan/MATLAB/R2018b/bin/matlab'
+#alias matlab='/home/taehwan/MATLAB/R2018b/bin/matlab'
 alias mcli='matlab -nosplash -nodesktop'
 alias chrome='google-chrome-stable'
 alias hiber='sudo pm-hibernate'
@@ -147,8 +149,10 @@ alias wifick='nmcli dev wifi'
 alias tpoff='xinput set-prop 15 "Device Enabled" 0'
 
 alias tls='tmux ls'
-alias tat='tmux attach-session'
+alias tat='tmux -2 attach-session'
 alias tns='tmux new'
+alias chrome-tmx='tmux new -d 'google-chrome''
+alias zotero-tmx='tmux new -d 'zotero''
 
 # in case of ibus failure:
 # ibus-daemon &
