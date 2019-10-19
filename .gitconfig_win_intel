@@ -1,0 +1,4 @@
+[http]
+	proxy = http://proxy.fm.intel.com:911
+[https]
+	proxy = http://proxy.fm.intel.com:911
